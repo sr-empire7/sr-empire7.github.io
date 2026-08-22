@@ -85,3 +85,12 @@ footer{border-top:1px solid #211e18;padding:55px 0 25px;background:#050505}.foot
   .broker-row>span{font-size:10px}
   .broker-row strong{font-size:10px}
 }
+
+/* ===== ADDITIONAL BROKER: PHYNtex MARKETS ===== */
+.phyntex-card{position:relative;overflow:hidden;padding:0!important;background:
+  radial-gradient(circle at 92% 8%,rgba(213,167,61,.10),transparent 26%),
+  linear-gradient(145deg,#151515 0%,#0b0b0b 72%);box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.phyntex-logo{background:#fff!important;border-color:#3a3120!important}
+.phyntex-logo img{padding:8px!important;object-fit:contain!important}
+.broker-grid-pro > .broker-check-pro{grid-column:1 / -1}
+@media(max-width:900px){.broker-grid-pro > .broker-check-pro{grid-column:auto}}
