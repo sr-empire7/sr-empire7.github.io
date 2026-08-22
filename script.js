@@ -54,13 +54,25 @@ const translations = {
 };
 
 const $ = s => document.querySelector(s);
-$("#telegramLink").href = CONFIG.telegramUrl;
-$("#tiktokLink").href = CONFIG.tiktokUrl;
-$("#instagramLink").href = CONFIG.instagramUrl;
-$("#locationName").textContent = CONFIG.classLocationName;
-$("#coords").textContent = `${CONFIG.latitude.toFixed(5)}, ${CONFIG.longitude.toFixed(5)}`;
-$("#mapsLink").href = `https://www.google.com/maps/dir/?api=1&destination=${CONFIG.latitude},${CONFIG.longitude}`;
-$("#year").textContent = new Date().getFullYear();
+
+// Helper aman: hanya mengubah elemen yang memang ada di HTML.
+const setHref = (selector, url) => {
+  const el = $(selector);
+  if (el) el.href = url;
+};
+const setText = (selector, value) => {
+  const el = $(selector);
+  if (el) el.textContent = value;
+};
+
+// Link sosial bersifat opsional karena tidak semua halaman memiliki elemennya.
+setHref("#telegramLink", CONFIG.telegramUrl);
+setHref("#tiktokLink", CONFIG.tiktokUrl);
+setHref("#instagramLink", CONFIG.instagramUrl);
+setText("#locationName", CONFIG.classLocationName);
+setText("#coords", `${CONFIG.latitude.toFixed(5)}, ${CONFIG.longitude.toFixed(5)}`);
+setHref("#mapsLink", `https://www.google.com/maps/dir/?api=1&destination=${CONFIG.latitude},${CONFIG.longitude}`);
+setText("#year", new Date().getFullYear());
 
 window.addEventListener("load", () => {
   setTimeout(() => $("#intro").classList.add("hide"), 1900);
@@ -71,7 +83,8 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-$("#language").addEventListener("change", e => {
+const language = $("#language");
+if (language) language.addEventListener("change", e => {
   const lang = e.target.value;
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
@@ -80,7 +93,8 @@ $("#language").addEventListener("change", e => {
   document.documentElement.lang = lang;
 });
 
-$("#menuBtn").addEventListener("click", () => $("#mobileMenu").classList.toggle("open"));
+const menuBtn = $("#menuBtn");
+if (menuBtn) menuBtn.addEventListener("click", () => $("#mobileMenu")?.classList.toggle("open"));
 document.querySelectorAll("#mobileMenu a").forEach(a => a.addEventListener("click", () => $("#mobileMenu").classList.remove("open")));
 
 function toast(msg){
@@ -89,20 +103,20 @@ function toast(msg){
   setTimeout(() => $("#toast").style.display = "none", 3200);
 }
 
-$("#registerForm").addEventListener("submit", e => {
+const registerForm = $("#registerForm");
+if (registerForm) registerForm.addEventListener("submit", e => {
   e.preventDefault();
 
   const fields = {
     name: $("#name").value.trim(),
     phone: $("#phone").value.trim(),
     email: $("#email").value.trim(),
-    course: $("#course").value,
-    experience: $("#experience").value,
-    message: $("#message").value.trim()
+    course: $("#course")?.value.trim() || "Face to Face (Advance) 2K26",
+    message: $("#message")?.value.trim() || ""
   };
 
-  if (!fields.name || !fields.phone || !fields.course) {
-    toast("Sila lengkapkan nama, telefon dan pilihan kelas.");
+  if (!fields.name || !fields.phone) {
+    toast("Sila lengkapkan nama dan nombor WhatsApp / telefon.");
     return;
   }
 
@@ -110,11 +124,14 @@ $("#registerForm").addEventListener("submit", e => {
 `PENDAFTARAN KELAS SR EMPIRE
 
 Nama: ${fields.name}
-Telefon: ${fields.phone}
+WhatsApp / Telefon: ${fields.phone}
 Email: ${fields.email || "-"}
-Kelas: ${fields.course}
-Pengalaman: ${fields.experience || "-"}
-Tujuan/Nota: ${fields.message || "-"}`;
+Coaching: ${fields.course}
+Tujuan/Nota: ${fields.message || "-"}
+
+Fee: RM950.00
+Deposit: RM800
+Balance: RM150`;
 
   // WhatsApp tujuan: format internasional tanpa +, spasi atau tanda -
   const whatsappNumber = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
@@ -137,11 +154,24 @@ Tujuan/Nota: ${fields.message || "-"}`;
   toast("Pendaftaran siap. WhatsApp akan dibuka.");
 });
 
-$("#gpsBtn").addEventListener("click", () => {
+const gpsBtn = $("#gpsBtn");
+if (gpsBtn) gpsBtn.addEventListener("click", () => {
   if(!navigator.geolocation){ toast("GPS tidak disokong oleh browser ini."); return; }
   navigator.geolocation.getCurrentPosition(pos => {
     const lat = pos.coords.latitude.toFixed(6);
     const lng = pos.coords.longitude.toFixed(6);
     window.open(`https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${CONFIG.latitude},${CONFIG.longitude}`, "_blank");
   }, () => toast("Izin GPS ditolak atau lokasi tidak tersedia."));
+});
+
+
+// Fungsi tombol "Mulai Belajar" / CTA menuju form pendaftaran.
+document.querySelectorAll('a[href="#daftar"]').forEach(link => {
+  link.addEventListener("click", e => {
+    const target = document.getElementById("daftar");
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", "#daftar");
+  });
 });
