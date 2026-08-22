@@ -151,9 +151,134 @@ footer{border-top:1px solid #211e18;padding:55px 0 25px;background:#050505}.foot
 }
 
 
-/* ===== REGISTRATION AFTER HERO ===== */
+
+/* ===== REGISTRATION LOWER POSITION ===== */
 .top-register{
   position:relative;
   z-index:2;
-  border-top:1px solid #211e18;
+}
+
+/* ===== PERSONAL COACHING REGISTRATION ===== */
+.personal-register{
+  padding:58px 0 70px;
+  background:
+    radial-gradient(circle at 78% 12%,rgba(217,167,46,.11),transparent 28%),
+    linear-gradient(180deg,#080808 0%,#050505 100%);
+  border-bottom:1px solid #211e18;
+}
+.personal-register .section-heading{margin-bottom:30px;align-items:center}
+.personal-register .section-heading>p{margin-bottom:0}
+.personal-coaching-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:18px;align-items:stretch}
+.personal-register .registration-form,
+.coaching-info{
+  border:1px solid #302a20;
+  border-radius:22px;
+  background:linear-gradient(145deg,#141414,#090909);
+  box-shadow:0 24px 70px rgba(0,0,0,.3);
+}
+.personal-register .registration-form{padding:30px}
+.form-badge{
+  display:inline-flex;
+  width:max-content;
+  padding:7px 11px;
+  border:1px solid #4c391b;
+  border-radius:7px;
+  background:#171208;
+  color:#e6bd54;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  margin-bottom:2px;
+}
+.personal-register .registration-form input[readonly]{color:#d8c58e;background:#11100c}
+.payment-reminder{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid #3a301f;
+  border-radius:13px;
+  overflow:hidden;
+  background:#0b0b0b;
+}
+.payment-reminder>div{padding:13px 12px;border-right:1px solid #2b251b}
+.payment-reminder>div:last-child{border-right:0}
+.payment-reminder b{display:block;color:#777066;font-size:8px;letter-spacing:1.4px;text-transform:uppercase}
+.payment-reminder strong{display:block;margin-top:3px;color:#e8c45f;font:800 17px Manrope}
+.consent-row{display:flex!important;align-items:flex-start;gap:9px;color:#8d867b!important;font-size:10px!important;font-weight:500!important}
+.consent-row input{width:16px!important;height:16px;margin:1px 0 0;accent-color:#d9a72e;flex:0 0 16px}
+.consent-row span{margin:0!important}
+.coaching-info{padding:30px;position:relative;overflow:hidden}
+.coaching-info:before{content:"";position:absolute;right:-70px;top:-90px;width:220px;height:220px;border-radius:50%;background:rgba(218,169,48,.07);filter:blur(8px)}
+.coaching-info-head{display:flex;gap:15px;align-items:center;position:relative}
+.coaching-icon{display:grid;place-items:center;width:58px;height:58px;flex:0 0 58px;border-radius:15px;border:1px solid #4a381c;background:#0a0907;color:#e6bd54;font:900 15px Manrope;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.coaching-info-head h3{margin:4px 0 0;font:800 25px/1.1 Manrope;color:#f1eadb}
+.coaching-details{margin-top:24px;border-top:1px solid #29241d}
+.coaching-detail{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #29241d}
+.detail-icon{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#17130b;border:1px solid #3d301b;color:#d8ae4e;font-size:14px}
+.coaching-detail small{display:block;color:#777067;font-size:8px;letter-spacing:1.5px;font-weight:900}
+.coaching-detail b{display:block;color:#e5ded1;font-size:13px;margin-top:2px}
+.coaching-detail em{font-style:normal;color:#a99d89;font-weight:500;margin-left:4px}
+.payment-box{margin-top:18px;border:1px solid #4a381d;border-radius:14px;background:linear-gradient(135deg,rgba(218,169,48,.08),rgba(255,255,255,.01));overflow:hidden}
+.payment-title{display:inline-block;margin:-1px 0 0;padding:7px 12px;border-radius:0 0 8px 0;background:linear-gradient(135deg,#b77d13,#f2ca5e);color:#130f07;font-size:10px;font-weight:900;letter-spacing:1px}
+.payment-columns{display:grid;grid-template-columns:1fr 1fr}
+.payment-columns>div{padding:15px 16px}
+.payment-columns>div+div{border-left:1px solid #382e1e}
+.payment-columns small{display:block;color:#8e8068;font-size:8px;letter-spacing:1.5px;font-weight:900}
+.payment-columns strong{display:block;color:#f0c957;font:800 25px Manrope;margin:3px 0 4px}
+.payment-columns p{margin:0;color:#827b70;font-size:9px;line-height:1.5}
+.bank-box{display:flex;align-items:center;gap:14px;margin-top:14px;padding:13px 14px;border:1px solid #2e291f;border-radius:12px;background:#0b0b0b}
+.bank-name{padding:8px 11px;border-radius:7px;background:#f3f0e6;color:#111;font:900 13px Manrope;white-space:nowrap}
+.bank-box small{display:block;color:#776f63;font-size:8px;letter-spacing:1.5px;font-weight:900}
+.bank-box strong{display:block;color:#f1cd61;font:800 20px Manrope;letter-spacing:.5px}
+.bank-box span{display:block;color:#aaa093;font-size:9px;margin-top:1px}
+.coaching-whatsapp{display:flex;align-items:center;gap:12px;margin-top:14px;padding:13px 14px;border:1px solid #3b3429;border-radius:12px;background:#0d0d0d}
+.coaching-whatsapp:hover{border-color:#80601e}
+.wa-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#e9f4e8;color:#141a14;font-size:10px;font-weight:900}
+.coaching-whatsapp small{display:block;color:#777066;font-size:8px;letter-spacing:1.5px;font-weight:900}
+.coaching-whatsapp strong{display:block;color:#eee6d7;font-size:16px;letter-spacing:.5px}
+.coaching-whatsapp .arrow{margin-left:auto;color:#e4bb53;font-size:18px}
+.coaching-tagline{text-align:center;margin-top:17px;color:#d3aa47;font-size:8px;letter-spacing:3px;font-weight:900}
+.coaching-tagline span{color:#776021;margin:0 5px}
+
+@media(max-width:900px){
+  .personal-coaching-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .personal-register{padding:38px 0 48px}
+  .personal-register .registration-form,.coaching-info{padding:22px}
+  .payment-reminder{grid-template-columns:1fr}
+  .payment-reminder>div{border-right:0;border-bottom:1px solid #2b251b}
+  .payment-reminder>div:last-child{border-bottom:0}
+  .payment-columns{grid-template-columns:1fr}
+  .payment-columns>div+div{border-left:0;border-top:1px solid #382e1e}
+  .bank-box{align-items:flex-start;flex-direction:column}
+  .bank-name{align-self:flex-start}
+  .coaching-info-head h3{font-size:21px}
+}
+
+/* ===== GPS / LOKASI DI PERSONAL COACHING ===== */
+.coaching-location-box{
+  margin-top:14px;
+  padding:16px;
+  border:1px solid #3b3429;
+  border-radius:14px;
+  background:linear-gradient(145deg,#11100d,#0a0a09);
+}
+.coaching-location-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.coaching-location-head small{display:block;color:#777066;font-size:8px;letter-spacing:1.5px;font-weight:900}
+.coaching-location-head strong{display:block;margin-top:4px;color:#eee6d7;font-size:14px}
+.coaching-location-head span{display:block;margin-top:4px;color:#8c8478;font-size:10px}
+.location-pin-small{
+  display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;border-radius:11px;
+  border:1px solid #4a381c;background:#17130b;color:#e6bd54;font-size:20px;
+}
+.coaching-location-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.coaching-location-actions .btn{width:100%;justify-content:center}
+.gps-note{display:block;margin-top:10px;color:#6f685e;font-size:9px;line-height:1.5}
+@media(max-width:600px){
+  .coaching-location-actions{grid-template-columns:1fr}
 }
