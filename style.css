@@ -282,3 +282,44 @@ footer{border-top:1px solid #211e18;padding:55px 0 25px;background:#050505}.foot
 @media(max-width:600px){
   .coaching-location-actions{grid-template-columns:1fr}
 }
+
+
+/* ===== HFM BROKER + LARGE SOCIAL MEDIA ===== */
+.hfm-card{position:relative;overflow:hidden;padding:0!important;background:radial-gradient(circle at 92% 8%,rgba(213,167,61,.12),transparent 26%),linear-gradient(145deg,#151515 0%,#0b0b0b 72%);box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.hfm-logo{font:900 24px/1 Manrope!important;letter-spacing:-1px;color:#f4c85c;background:#101010!important;border-color:#5c461d!important;box-shadow:0 10px 28px rgba(0,0,0,.3)}
+.hfm-card .broker-actions-pro{grid-template-columns:1fr 1fr}
+.social-section{background:linear-gradient(180deg,#090909,#050505);border-top:1px solid #1d1a15;border-bottom:1px solid #1d1a15}
+.social-grid-large{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.social-card-large{display:flex;align-items:center;gap:18px;min-height:118px;padding:22px 24px;border:1px solid #302b22;border-radius:18px;background:linear-gradient(145deg,#121212,#090909);box-shadow:0 16px 45px rgba(0,0,0,.22);transition:.25s ease}
+.social-card-large:hover{transform:translateY(-4px);border-color:#71551e;box-shadow:0 22px 55px rgba(0,0,0,.35)}
+.social-icon{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;border-radius:16px;background:#18130b;border:1px solid #4b3a1d;color:#e5bd58;font:900 15px Manrope;letter-spacing:.5px}
+.social-card-large small{display:block;color:#a48b55;font-size:9px;font-weight:900;letter-spacing:2px;margin-bottom:3px}
+.social-card-large strong{display:block;color:#f2eadc;font:800 18px Manrope}
+.social-card-large p{margin:5px 0 0;color:#837c71;font-size:11px}
+.social-arrow{margin-left:auto;color:#e4bb53;font-size:22px}
+.social-card-wa{border-color:#5a4a28;background:linear-gradient(145deg,#15130e,#0a0a09)}
+@media(max-width:900px){.hfm-card .broker-actions-pro{grid-template-columns:1fr}.social-grid-large{grid-template-columns:1fr}}
+@media(max-width:600px){.social-card-large{min-height:100px;padding:17px}.social-icon{width:50px;height:50px;flex-basis:50px}.social-card-large strong{font-size:15px}.social-card-large p{font-size:10px}}
+
+/* ===== RECOMMENDED BROKER ===== */
+.recommended-broker{border-color:rgba(222,181,79,.58)!important;box-shadow:0 28px 80px rgba(206,158,45,.12),inset 0 0 0 1px rgba(235,198,101,.05)}
+.recommended-badge{margin:0 30px 12px;padding:10px 13px;border:1px solid rgba(221,181,76,.35);border-radius:10px;background:linear-gradient(90deg,rgba(215,168,55,.13),rgba(255,255,255,.02));color:#edca6b;font-size:10px;font-weight:900;letter-spacing:1.5px}
+.valetax-logo,.hfm-logo{background:#050505!important}
+.valetax-logo img,.hfm-logo img{width:100%;height:100%;object-fit:contain;padding:6px!important}
+.hfm-logo img{background:#fff;border-radius:12px}
+@media(max-width:600px){.recommended-badge{margin-left:22px;margin-right:22px;font-size:9px}.broker-actions-pro{grid-template-columns:1fr!important}}
+
+/* ===== BROKER: SINGLE IB CONTACT BUTTON ===== */
+.broker-actions-pro:has(.broker-wa-btn){
+  grid-template-columns:1fr!important;
+  padding:20px 30px 18px!important;
+}
+.broker-actions-pro .broker-wa-btn{
+  width:100%;
+  min-height:54px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.4px;
+  justify-content:center;
+  text-align:center;
+}
