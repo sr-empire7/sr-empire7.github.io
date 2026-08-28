@@ -2,6 +2,7 @@ const CONFIG = {
   telegramUrl: "https://t.me/completepuzzle",
   tiktokUrl: "https://www.tiktok.com/@srshaempire7",
   instagramUrl: "https://www.instagram.com/srshah_4111",
+  hfmIbUrl: "https://affiliates.hfm.com/int/id/partnerships-types",
   whatsappNumber: "60103732776", // format: 60 + nomor, tanpa +, spasi atau tanda -
   classLocationName: "Kuala Lumpur",
   latitude: 3.1390,
@@ -102,6 +103,21 @@ function toast(msg){
   $("#toast").style.display = "block";
   setTimeout(() => $("#toast").style.display = "none", 3200);
 }
+
+// Tombol "Hubungi IB" membuka WhatsApp admin dengan pesan profesional + link IB broker.
+document.querySelectorAll(".broker-wa-btn").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    const broker = btn.dataset.broker || "broker";
+    const ibUrl = btn.dataset.ibUrl || "";
+    const number = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
+    const text = `Halo Admin SR Empire,\n\nSaya berminat untuk mendaftar di broker ${broker}. Mohon bantuannya untuk mengarahkan saya melalui proses pendaftaran dan memastikan saya terhubung melalui IB yang tepat.\n\nLink IB ${broker}: ${ibUrl}\n\nTerima kasih.`;
+    if (!number) { toast("Nomor WhatsApp admin belum diatur."); return; }
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, "_blank");
+  });
+});
+
+setHref("#adminWhatsappLink", `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Halo admin SR Empire, saya ingin mendapatkan informasi lebih lanjut.")}`);
 
 const registerForm = $("#registerForm");
 if (registerForm) registerForm.addEventListener("submit", e => {
