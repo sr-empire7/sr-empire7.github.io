@@ -2,7 +2,7 @@ const CONFIG = {
   telegramUrl: "https://t.me/completepuzzle",
   tiktokUrl: "https://www.tiktok.com/@srshaempire7",
   instagramUrl: "https://www.instagram.com/srshah_4111",
-  hfmIbUrl: "https://affiliates.hfm.com/int/id/partnerships-types",
+  hfmIbUrl: "https://www.hfmmalaysia.com/sv/en/?refid=30480157",
   whatsappNumber: "60103732776", // format: 60 + nomor, tanpa +, spasi atau tanda -
   classLocationName: "Kuala Lumpur",
   latitude: 3.1390,
@@ -56,7 +56,7 @@ const translations = {
 
 const $ = s => document.querySelector(s);
 
-// Helper aman: hanya mengubah elemen yang memang ada di HTML.
+// Safe helper: only updates elements that exist in the HTML.
 const setHref = (selector, url) => {
   const el = $(selector);
   if (el) el.href = url;
@@ -66,7 +66,7 @@ const setText = (selector, value) => {
   if (el) el.textContent = value;
 };
 
-// Link sosial bersifat opsional karena tidak semua halaman memiliki elemennya.
+// Social links are optional because not every page includes them.
 setHref("#telegramLink", CONFIG.telegramUrl);
 setHref("#tiktokLink", CONFIG.tiktokUrl);
 setHref("#instagramLink", CONFIG.instagramUrl);
@@ -84,15 +84,19 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-const language = $("#language");
-if (language) language.addEventListener("change", e => {
-  const lang = e.target.value;
+const applyLanguage = (lang) => {
+  const selected = translations[lang] || translations.en;
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
-    if(translations[lang][key]) el.innerHTML = translations[lang][key];
+    if (selected[key]) el.innerHTML = selected[key];
   });
   document.documentElement.lang = lang;
-});
+  if (language) language.value = lang;
+};
+
+const language = $("#language");
+applyLanguage("en");
+if (language) language.addEventListener("change", e => applyLanguage(e.target.value));
 
 const menuBtn = $("#menuBtn");
 if (menuBtn) menuBtn.addEventListener("click", () => $("#mobileMenu")?.classList.toggle("open"));
@@ -104,20 +108,20 @@ function toast(msg){
   setTimeout(() => $("#toast").style.display = "none", 3200);
 }
 
-// Tombol "Hubungi IB" membuka WhatsApp admin dengan pesan profesional + link IB broker.
+// Broker button opens WhatsApp with a professional English message and the broker IB link.
 document.querySelectorAll(".broker-wa-btn").forEach(btn => {
   btn.addEventListener("click", e => {
     e.preventDefault();
     const broker = btn.dataset.broker || "broker";
     const ibUrl = btn.dataset.ibUrl || "";
     const number = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
-    const text = `Halo Admin SR Empire,\n\nSaya berminat untuk mendaftar di broker ${broker}. Mohon bantuannya untuk mengarahkan saya melalui proses pendaftaran dan memastikan saya terhubung melalui IB yang tepat.\n\nLink IB ${broker}: ${ibUrl}\n\nTerima kasih.`;
-    if (!number) { toast("Nomor WhatsApp admin belum diatur."); return; }
+    const text = `Hello SR Empire Admin,\n\nI am interested in registering with ${broker}. Please assist me with the registration process and help ensure that I am connected through the correct IB.\n\nIB Link for ${broker}: ${ibUrl}\n\nThank you.`;
+    if (!number) { toast("Admin WhatsApp number is not configured."); return; }
     window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, "_blank");
   });
 });
 
-setHref("#adminWhatsappLink", `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Halo admin SR Empire, saya ingin mendapatkan informasi lebih lanjut.")}`);
+setHref("#adminWhatsappLink", `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Hello SR Empire Admin, I would like to get more information.")}`);
 
 const registerForm = $("#registerForm");
 if (registerForm) registerForm.addEventListener("submit", e => {
@@ -132,18 +136,18 @@ if (registerForm) registerForm.addEventListener("submit", e => {
   };
 
   if (!fields.name || !fields.phone) {
-    toast("Sila lengkapkan nama dan nombor WhatsApp / telefon.");
+    toast("Please complete your name and WhatsApp / phone number.");
     return;
   }
 
   const text =
-`PENDAFTARAN KELAS SR EMPIRE
+`SR EMPIRE CLASS REGISTRATION
 
-Nama: ${fields.name}
-WhatsApp / Telefon: ${fields.phone}
+Name: ${fields.name}
+WhatsApp / Phone: ${fields.phone}
 Email: ${fields.email || "-"}
 Coaching: ${fields.course}
-Tujuan/Nota: ${fields.message || "-"}
+Goal / Notes: ${fields.message || "-"}
 
 Fee: RM950.00
 Deposit: RM800
@@ -153,7 +157,7 @@ Balance: RM150`;
   const whatsappNumber = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
 
   if (!whatsappNumber) {
-    toast("Nomor WhatsApp belum diatur.");
+    toast("WhatsApp number is not configured.");
     return;
   }
 
@@ -163,25 +167,25 @@ Balance: RM150`;
   const popup = window.open(whatsappUrl, "_blank");
 
   if (!popup) {
-    toast("Popup WhatsApp diblokir browser. Izinkan popup lalu coba lagi.");
+    toast("WhatsApp popup was blocked. Please allow popups and try again.");
     return;
   }
 
-  toast("Pendaftaran siap. WhatsApp akan dibuka.");
+  toast("Registration ready. WhatsApp will open.");
 });
 
 const gpsBtn = $("#gpsBtn");
 if (gpsBtn) gpsBtn.addEventListener("click", () => {
-  if(!navigator.geolocation){ toast("GPS tidak disokong oleh browser ini."); return; }
+  if(!navigator.geolocation){ toast("GPS is not supported by this browser."); return; }
   navigator.geolocation.getCurrentPosition(pos => {
     const lat = pos.coords.latitude.toFixed(6);
     const lng = pos.coords.longitude.toFixed(6);
     window.open(`https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${CONFIG.latitude},${CONFIG.longitude}`, "_blank");
-  }, () => toast("Izin GPS ditolak atau lokasi tidak tersedia."));
+  }, () => toast("GPS permission was denied or the location is unavailable."));
 });
 
 
-// Fungsi tombol "Mulai Belajar" / CTA menuju form pendaftaran.
+// Start Learning / CTA button scrolls to the registration form.
 document.querySelectorAll('a[href="#daftar"]').forEach(link => {
   link.addEventListener("click", e => {
     const target = document.getElementById("daftar");
