@@ -134,7 +134,6 @@ footer{border-top:1px solid #211e18;padding:55px 0 25px;background:#050505}.foot
 }
 
 
-/* Form pendaftaran berada DI BAWAH logo/header, bukan di dalam navbar */
 .top-register{
   position:relative;
   margin-top:0;
@@ -323,3 +322,61 @@ footer{border-top:1px solid #211e18;padding:55px 0 25px;background:#050505}.foot
   justify-content:center;
   text-align:center;
 }
+
+
+/* ===== PREMIUM OFFICIAL SOCIAL CHANNELS ===== */
+.social-grid-large{grid-template-columns:1fr 1fr;gap:18px}
+.social-card-large{position:relative;min-height:150px;padding:28px 30px;align-items:flex-start;border-radius:20px}
+.social-card-featured{min-height:210px;padding:30px 32px;align-items:flex-start}
+.social-card-featured .social-icon{width:76px;height:76px;flex-basis:76px;border-radius:20px;font-size:0;box-shadow:0 16px 35px rgba(0,0,0,.32)}
+.social-icon svg{width:62%;height:62%;display:block;fill:currentColor}
+.social-icon-instagram svg,.social-icon-whatsapp svg{fill:none}
+.social-icon-instagram svg circle:last-child{fill:currentColor;stroke:none}
+.social-icon-telegram{color:#e7c15b;background:linear-gradient(145deg,#17140d,#0b0b0a)!important}
+.social-icon-tiktok{color:#e7c15b;background:linear-gradient(145deg,#17140d,#0b0b0a)!important}
+.social-icon-instagram{color:#e7c15b}
+.social-icon-whatsapp{color:#e7c15b}
+.social-copy{min-width:0;flex:1}
+.social-card-featured .social-copy small{font-size:10px;letter-spacing:2.2px}
+.social-card-featured .social-copy strong{font-size:21px;margin-top:2px}
+.social-card-featured .social-copy h3{font:800 24px/1.15 Manrope;color:#f1eadb;margin:7px 0 8px}
+.social-card-featured .social-copy p{max-width:620px;font-size:12px;line-height:1.75;margin:0;color:#928b80}
+.social-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}
+.social-meta span{padding:5px 8px;border:1px solid #3b301d;border-radius:6px;background:#12100c;color:#c7a956;font-size:8px;font-weight:900;letter-spacing:1.2px}
+.social-card-featured .social-arrow{font-size:28px;margin-top:3px}
+.social-card-featured:hover .social-icon{transform:translateY(-2px) scale(1.03);transition:.25s ease}
+@media(max-width:900px){.social-grid-large{grid-template-columns:1fr}.social-card-featured{min-height:180px}}
+@media(max-width:600px){.social-card-large,.social-card-featured{padding:21px;gap:14px;min-height:135px}.social-card-featured .social-icon{width:60px;height:60px;flex-basis:60px;border-radius:16px}.social-card-featured .social-copy strong{font-size:17px}.social-card-featured .social-copy h3{font-size:19px}.social-card-featured .social-copy p{font-size:10px;line-height:1.6}.social-meta{display:none}.social-card-featured .social-arrow{font-size:21px}}
+
+/* =========================================================
+   VALETAX — PREMIUM / TRUST-FIRST BROKER CARD
+   ========================================================= */
+.valetax-card{--vx-gold:#f3c85b;border:1px solid rgba(243,200,91,.48)!important;border-radius:28px!important;background:radial-gradient(circle at 88% 2%,rgba(243,200,91,.19),transparent 27%),radial-gradient(circle at 5% 45%,rgba(35,103,167,.14),transparent 31%),linear-gradient(145deg,#10253a 0%,#081522 58%,#050b12 100%)!important;box-shadow:0 32px 90px rgba(0,0,0,.48),0 0 0 1px rgba(255,255,255,.025) inset,0 0 55px rgba(243,200,91,.06)!important;transform:translateZ(0)}
+.valetax-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0 45%,rgba(255,255,255,.035) 50%,transparent 56%)}
+.valetax-card .broker-accent{height:4px;background:linear-gradient(90deg,#8c631a,#f3c85b 45%,#fff0a6 52%,#c9942e 78%,#765013);box-shadow:0 0 24px rgba(243,200,91,.24)}
+.valetax-card .broker-topline{position:relative;z-index:1;padding:22px 30px 0}
+.valetax-card .broker-tag{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid rgba(243,200,91,.34);border-radius:999px;background:rgba(243,200,91,.08);color:#ffe18a}
+.valetax-card .broker-status{padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.035)}
+.valetax-card .broker-status i{background:#54d39b;box-shadow:0 0 12px rgba(84,211,155,.55)}
+.valetax-card .broker-head-pro{position:relative;z-index:1;padding-top:26px;padding-bottom:22px}
+.valetax-card .valetax-logo{width:86px;height:86px;flex-basis:86px;border-radius:22px;background:#fff!important;border:1px solid rgba(243,200,91,.58)!important;box-shadow:0 16px 36px rgba(0,0,0,.34),0 0 0 5px rgba(243,200,91,.055)}
+.valetax-card .valetax-logo img{padding:8px!important}
+.valetax-card .broker-brand-copy h3{font-size:32px;letter-spacing:-.8px;color:#fff8e7}
+.valetax-card .broker-brand-copy small{color:#d5b568}.valetax-card .broker-brand-copy p{color:#8ea0b1}
+.valetax-card .recommended-badge{position:relative;z-index:1;margin:0 30px 15px;padding:12px 15px;display:flex;align-items:center;gap:9px;border:1px solid rgba(243,200,91,.35);border-radius:13px;background:linear-gradient(90deg,rgba(243,200,91,.15),rgba(243,200,91,.045));color:#ffe08a;font-size:10px;letter-spacing:1.3px}
+.valetax-card .recommended-badge:before{content:"★";width:22px;height:22px;display:grid;place-items:center;border-radius:7px;background:linear-gradient(135deg,#f3c85b,#b67b16);color:#1b1305;font-size:11px}
+.valetax-card .broker-intro-box{position:relative;z-index:1;margin-bottom:17px;border-color:rgba(255,255,255,.09);background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 12px 30px rgba(0,0,0,.14)}
+.valetax-card .broker-intro-box:before{content:"WHY VALETAX";display:block;margin-bottom:7px;color:#d8b65d;font-size:8px;font-weight:900;letter-spacing:2px}
+.valetax-card .broker-intro-box p{color:#aebdca}.valetax-card .broker-data{position:relative;z-index:1}
+.valetax-card .broker-data:before{content:"KEY ACCOUNT INFORMATION";display:block;padding:2px 0 8px;color:#657a8d;font-size:8px;font-weight:900;letter-spacing:2px}
+.valetax-card .broker-row{min-height:61px;border-top-color:rgba(255,255,255,.075)}.valetax-card .broker-row>span{color:#a7b5c2}
+.valetax-card .broker-row-icon{width:25px;height:25px;border-radius:8px;color:#f3c85b;border-color:rgba(243,200,91,.28);background:rgba(243,200,91,.045)}
+.valetax-card .broker-row strong{color:#f7f3ea;font-size:11.5px}.valetax-card .broker-row strong small{color:#c8aa65}
+.valetax-card .broker-actions-pro{position:relative;z-index:1;padding-top:24px!important}
+.valetax-card .broker-wa-btn{position:relative;overflow:hidden;min-height:58px;border:1px solid rgba(255,231,157,.48)!important;border-radius:14px;background:linear-gradient(135deg,#b77d16 0%,#f2c653 45%,#ffe69a 52%,#c88d22 100%)!important;box-shadow:0 14px 34px rgba(204,148,37,.22);color:#171106!important;letter-spacing:.6px;transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+.valetax-card .broker-wa-btn:before{content:"";position:absolute;inset:0;transform:translateX(-110%);background:linear-gradient(100deg,transparent,rgba(255,255,255,.42),transparent);transition:transform .55s ease}
+.valetax-card .broker-wa-btn:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(204,148,37,.32);filter:saturate(1.08)}.valetax-card .broker-wa-btn:hover:before{transform:translateX(110%)}
+.valetax-card .broker-disclaimer{position:relative;z-index:1;border-color:rgba(255,255,255,.075);background:rgba(2,7,12,.45)}
+.valetax-card .broker-disclaimer>span{border-color:rgba(243,200,91,.34);color:#e7c567}.valetax-card .broker-disclaimer small{color:#718191}
+@media(min-width:901px){.valetax-card:hover{transform:translateY(-5px);transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 40px 105px rgba(0,0,0,.52),0 0 0 1px rgba(255,255,255,.025) inset,0 0 70px rgba(243,200,91,.09)!important}}
+@media(max-width:600px){.valetax-card{border-radius:22px!important}.valetax-card .broker-topline{padding-left:22px;padding-right:22px}.valetax-card .broker-head-pro{padding-top:22px;padding-left:22px;padding-right:22px}.valetax-card .valetax-logo{width:72px;height:72px;flex-basis:72px;border-radius:18px}.valetax-card .broker-brand-copy h3{font-size:26px}.valetax-card .recommended-badge{margin-left:22px;margin-right:22px}}
