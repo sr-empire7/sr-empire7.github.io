@@ -3,7 +3,7 @@ const CONFIG = {
   tiktokUrl: "https://www.tiktok.com/@srshaempire7",
   instagramUrl: "https://www.instagram.com/srshah_4111",
   hfmIbUrl: "https://www.hfmmalaysia.com/sv/en/?refid=30480157",
-  whatsappNumber: "60103732776", // format: 60 + nomor, tanpa +, spasi atau tanda -
+  whatsappNumber: "60103732776", 
   classLocationName: "Kuala Lumpur",
   latitude: 3.1390,
   longitude: 101.6869  
@@ -56,7 +56,6 @@ const translations = {
 
 const $ = s => document.querySelector(s);
 
-// Safe helper: only updates elements that exist in the HTML.
 const setHref = (selector, url) => {
   const el = $(selector);
   if (el) el.href = url;
@@ -66,7 +65,7 @@ const setText = (selector, value) => {
   if (el) el.textContent = value;
 };
 
-// Social links are optional because not every page includes them.
+
 setHref("#telegramLink", CONFIG.telegramUrl);
 setHref("#tiktokLink", CONFIG.tiktokUrl);
 setHref("#instagramLink", CONFIG.instagramUrl);
@@ -108,7 +107,7 @@ function toast(msg){
   setTimeout(() => $("#toast").style.display = "none", 3200);
 }
 
-// Broker button opens WhatsApp with a professional English message and the broker IB link.
+
 document.querySelectorAll(".broker-wa-btn").forEach(btn => {
   btn.addEventListener("click", e => {
     e.preventDefault();
@@ -152,8 +151,7 @@ Goal / Notes: ${fields.message || "-"}
 Fee: RM950.00
 Deposit: RM800
 Balance: RM150`;
-
-  // WhatsApp tujuan: format internasional tanpa +, spasi atau tanda -
+  
   const whatsappNumber = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
 
   if (!whatsappNumber) {
@@ -184,8 +182,6 @@ if (gpsBtn) gpsBtn.addEventListener("click", () => {
   }, () => toast("GPS permission was denied or the location is unavailable."));
 });
 
-
-// Start Learning / CTA button scrolls to the registration form.
 document.querySelectorAll('a[href="#daftar"]').forEach(link => {
   link.addEventListener("click", e => {
     const target = document.getElementById("daftar");
