@@ -116,7 +116,7 @@
 <div class="broker-row"><span><b class="broker-row-icon">$</b><em>Minimum deposit</em></span><strong>From US$8*</strong></div>
 </div>
 <div class="broker-actions broker-actions-pro">
-<a class="btn btn-gold btn-lg broker-wa-btn" data-broker="https://ma.valetaxid.com/p/4345089" href="#">Contact IB Broker ↗</a>
+<a class="btn btn-gold btn-lg broker-wa-btn" data-broker="Valetax" href="#">Contact IB Broker ↗</a>
 </div>
 <div class="broker-disclaimer"><span>i</span><small>*Account conditions, spreads, leverage, entities and requirements may vary by account type or region. The information above is based on the official Valetax website and is not a guarantee of trading results.</small></div>
 </article>
@@ -246,6 +246,27 @@
 </div>
 </div>
 </section>
+<!-- IB BROKER GUIDE MODAL -->
+<div class="ib-modal" id="ibModal" aria-hidden="true">
+  <div class="ib-modal-backdrop" data-ib-close></div>
+  <div class="ib-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ibModalTitle">
+    <button class="ib-modal-close" type="button" aria-label="Close" data-ib-close>×</button>
+    <div class="ib-modal-icon">↗</div>
+    <div class="ib-modal-kicker" data-ib-i18n="kicker">IB BROKER GUIDE</div>
+    <h3 id="ibModalTitle" data-ib-i18n="title">Before you contact the IB</h3>
+    <p class="ib-modal-lead" data-ib-i18n="lead">Follow these simple steps to make sure your registration is connected through the correct IB.</p>
+    <div class="ib-steps">
+      <div class="ib-step"><span>01</span><div><b data-ib-i18n="step1t">Confirm your broker</b><p data-ib-i18n="step1d">Check that the broker shown below matches the one you want to register with.</p></div></div>
+      <div class="ib-step"><span>02</span><div><b data-ib-i18n="step2t">Continue to WhatsApp</b><p data-ib-i18n="step2d">Tap the button below. WhatsApp will open with a professional message prepared for the admin.</p></div></div>
+      <div class="ib-step"><span>03</span><div><b data-ib-i18n="step3t">Complete registration with the admin</b><p data-ib-i18n="step3d">The IB link will be included in the message so the admin can guide you through the correct registration flow.</p></div></div>
+    </div>
+    <div class="ib-modal-note"><span>i</span><p data-ib-i18n="note">Please review the broker's official terms, entity and account conditions before registering or depositing.</p></div>
+    <div class="ib-modal-actions">
+      <button class="btn btn-outline" type="button" data-ib-close data-ib-i18n="cancel">Cancel</button>
+      <button class="btn btn-gold ib-continue-btn" type="button" id="ibContinue" data-ib-i18n="continue">Continue to WhatsApp ↗</button>
+    </div>
+  </div>
+</div>
 </main>
 <section class="section top-register personal-register" id="daftar">
 <div class="container">
