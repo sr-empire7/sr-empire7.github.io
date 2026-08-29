@@ -3,7 +3,7 @@ const CONFIG = {
   tiktokUrl: "https://www.tiktok.com/@srshaempire7",
   instagramUrl: "https://www.instagram.com/srshah_4111",
   hfmIbUrl: "https://www.hfmmalaysia.com/sv/en/?refid=30480157",
-  whatsappNumber: "60103732776", 
+  whatsappNumber: "60103732776",
   classLocationName: "Kuala Lumpur",
   latitude: 3.1390,
   longitude: 101.6869  
@@ -54,7 +54,14 @@ const translations = {
   }
 };
 
+const ibGuideTranslations = {
+  en: { kicker:"IB BROKER GUIDE", title:"Before you contact the IB", lead:"Follow these simple steps to make sure your registration is connected through the correct IB.", step1t:"Confirm your broker", step1d:"Check that the broker shown below matches the one you want to register with.", step2t:"Continue to WhatsApp", step2d:"Tap the button below. WhatsApp will open with a message prepared for the admin.", step3t:"Complete registration with the admin", step3d:"The IB link will be included in the message so the admin can guide you through the correct registration flow.", note:"Please review the broker's official terms, entity and account conditions before registering or depositing.", cancel:"Cancel", continue:"Continue to WhatsApp ↗" },
+  id: { kicker:"PANDUAN IB BROKER", title:"Sebelum menghubungi IB", lead:"Ikuti langkah sederhana berikut agar proses pendaftaran Anda terhubung melalui IB yang benar.", step1t:"Pastikan broker yang dipilih", step1d:"Periksa bahwa broker yang ditampilkan sesuai dengan broker yang ingin Anda daftarkan.", step2t:"Lanjut ke WhatsApp", step2d:"Tekan tombol di bawah. WhatsApp akan terbuka dengan pesan  yang sudah disiapkan untuk admin.", step3t:"Selesaikan pendaftaran dengan admin", step3d:"Link IB akan otomatis disertakan dalam pesan agar admin dapat membantu proses pendaftaran melalui jalur yang tepat.", note:"Pastikan Anda membaca ketentuan resmi, entitas, dan kondisi akun broker sebelum mendaftar atau melakukan deposit.", cancel:"Batal", continue:"Lanjut ke WhatsApp ↗" },
+  ms: { kicker:"PANDUAN IB BROKER", title:"Sebelum menghubungi IB", lead:"Ikuti langkah ringkas ini supaya pendaftaran anda disambungkan melalui IB yang betul.", step1t:"Sahkan broker yang dipilih", step1d:"Pastikan broker yang dipaparkan ialah broker yang ingin anda daftarkan.", step2t:"Teruskan ke WhatsApp", step2d:"Tekan butang di bawah. WhatsApp akan dibuka dengan mesej yang telah disediakan untuk admin.", step3t:"Lengkapkan pendaftaran dengan admin", step3d:"Pautan IB akan disertakan dalam mesej supaya admin boleh membantu proses pendaftaran melalui saluran yang betul.", note:"Sila semak terma rasmi, entiti dan syarat akaun broker sebelum mendaftar atau membuat deposit.", cancel:"Batal", continue:"Teruskan ke WhatsApp ↗" }
+};
+
 const $ = s => document.querySelector(s);
+
 
 const setHref = (selector, url) => {
   const el = $(selector);
@@ -90,6 +97,7 @@ const applyLanguage = (lang) => {
     if (selected[key]) el.innerHTML = selected[key];
   });
   document.documentElement.lang = lang;
+  applyIbGuideLanguage(lang);
   if (language) language.value = lang;
 };
 
@@ -107,18 +115,62 @@ function toast(msg){
   setTimeout(() => $("#toast").style.display = "none", 3200);
 }
 
+let pendingIb = null;
+const ibModal = $("#ibModal");
+const ibContinue = $("#ibContinue");
+
+function applyIbGuideLanguage(lang) {
+  const t = ibGuideTranslations[lang] || ibGuideTranslations.en;
+  document.querySelectorAll("[data-ib-i18n]").forEach(el => {
+    const key = el.dataset.ibI18n;
+    if (t[key]) el.textContent = t[key];
+  });
+}
+
+function openIbGuide(btn) {
+  pendingIb = btn;
+  applyIbGuideLanguage(document.documentElement.lang || "en");
+  if (!ibModal) return openIbWhatsapp(btn);
+  ibModal.classList.add("open");
+  ibModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("ib-modal-open");
+}
+
+function closeIbGuide() {
+  if (!ibModal) return;
+  ibModal.classList.remove("open");
+  ibModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("ib-modal-open");
+  pendingIb = null;
+}
+
+function openIbWhatsapp(btn) {
+  const broker = btn?.dataset.broker || "the selected broker";
+  const ibUrl = btn?.dataset.ibUrl || "";
+  const number = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
+  const lang = document.documentElement.lang || "en";
+  const messages = {
+    en: `Hello SR Empire Admin,\n\nI would like to register with ${broker} through the SR Empire IB. Please assist me with the correct registration procedure and confirm the applicable IB details.\n\nIB Registration Link: ${ibUrl}\n\nI understand that account conditions and requirements may vary by region and account type. Please share the relevant details before I proceed.\n\nThank you for your assistance.`,
+    id: `Halo Admin SR Empire,\n\nSaya ingin melakukan pendaftaran ${broker} melalui IB SR Empire. Mohon bantuannya untuk proses pendaftaran yang benar serta konfirmasi detail IB yang digunakan.\n\nLink Pendaftaran IB: ${ibUrl}\n\nSaya memahami bahwa ketentuan akun dan persyaratan dapat berbeda berdasarkan wilayah dan jenis akun. Mohon informasikan detail yang berlaku sebelum saya melanjutkan.\n\nTerima kasih atas bantuannya.`,
+    ms: `Salam Admin SR Empire,\n\nSaya berminat untuk mendaftar ${broker} melalui IB SR Empire. Mohon bantu saya dengan prosedur pendaftaran yang betul dan sahkan butiran IB yang digunakan.\n\nPautan Pendaftaran IB: ${ibUrl}\n\nSaya faham bahawa syarat akaun dan keperluan boleh berbeza mengikut wilayah dan jenis akaun. Sila kongsikan butiran yang berkaitan sebelum saya meneruskan.\n\nTerima kasih atas bantuan anda.`
+  };
+  if (!number) { toast("Admin WhatsApp number is not configured."); return; }
+  const text = messages[lang] || messages.en;
+  const popup = window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+  if (!popup) toast("✔");
+}
 
 document.querySelectorAll(".broker-wa-btn").forEach(btn => {
-  btn.addEventListener("click", e => {
-    e.preventDefault();
-    const broker = btn.dataset.broker || "broker";
-    const ibUrl = btn.dataset.ibUrl || "";
-    const number = String(CONFIG.whatsappNumber || "").replace(/\D/g, "");
-    const text = `Hello SR Empire Admin,\n\nI am interested in registering with ${broker}. Please assist me with the registration process and help ensure that I am connected through the correct IB.\n\nIB Link for ${broker}: ${ibUrl}\n\nThank you.`;
-    if (!number) { toast("Admin WhatsApp number is not configured."); return; }
-    window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, "_blank");
-  });
+  btn.addEventListener("click", e => { e.preventDefault(); openIbGuide(btn); });
 });
+
+document.querySelectorAll("[data-ib-close]").forEach(el => el.addEventListener("click", closeIbGuide));
+if (ibContinue) ibContinue.addEventListener("click", () => {
+  const btn = pendingIb;
+  closeIbGuide();
+  if (btn) openIbWhatsapp(btn);
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeIbGuide(); });
 
 setHref("#adminWhatsappLink", `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Hello SR Empire Admin, I would like to get more information.")}`);
 
@@ -182,6 +234,8 @@ if (gpsBtn) gpsBtn.addEventListener("click", () => {
   }, () => toast("GPS permission was denied or the location is unavailable."));
 });
 
+
+// Start Learning / CTA button scrolls to the registration form.
 document.querySelectorAll('a[href="#daftar"]').forEach(link => {
   link.addEventListener("click", e => {
     const target = document.getElementById("daftar");
