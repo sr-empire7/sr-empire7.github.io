@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Valetax Registration | SR Empire</title>
+<style>
+:root{
+  --black:#050505;
+  --black2:#0b0b0b;
+  --panel:rgba(18,18,18,.88);
+  --gold:#f5c76b;
+  --gold2:#fff0b5;
+  --gold3:#a87422;
+  --green:#19d66b;
+  --green2:#0b9d4d;
+  --text:#fff;
+  --muted:#aaa;
+  --line:rgba(245,199,107,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(245,199,107,.17),transparent 35%),
+    radial-gradient(circle at 85% 55%,rgba(25,214,107,.06),transparent 28%),
+    linear-gradient(145deg,#020202,#0a0a0a 48%,#030303);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,black,transparent 80%);
+}
+.wrap{max-width:1120px;margin:auto;padding:28px 18px 70px;position:relative}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:850px;margin:0 auto 35px;
+  padding:12px 16px;border:1px solid var(--line);
+  border-radius:18px;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(16px);
+  box-shadow:0 10px 35px rgba(0,0,0,.35);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:2px}
+.brand-mark{
+  width:34px;height:34px;border-radius:10px;
+  border:1px solid var(--gold);
+  display:grid;place-items:center;
+  color:var(--green);font-size:17px;
+  box-shadow:0 0 18px rgba(245,199,107,.18);
+}
+.brand span{color:var(--gold)}
+.status{font-size:11px;color:#bbb;letter-spacing:1.4px}
+.status i{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 10px var(--green);margin-right:7px;
+}
+.hero{text-align:center;padding:18px 10px 25px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border:1px solid var(--line);
+  border-radius:999px;color:var(--gold2);
+  background:rgba(245,199,107,.06);
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.hero h1{
+  margin:19px 0 9px;
+  font-size:clamp(40px,7vw,72px);
+  line-height:1;
+  letter-spacing:-2px;
+  background:linear-gradient(180deg,#fff8d7 0%,#f5c76b 45%,#a87422 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 40px rgba(245,199,107,.12);
+}
+.hero h1 strong{font-weight:900}
+.hero p{
+  color:#aaa;max-width:690px;margin:auto;
+  line-height:1.75;font-size:14px;
+}
+.gold-line{
+  width:min(240px,55%);height:1px;margin:23px auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  box-shadow:0 0 14px rgba(245,199,107,.35);
+}
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  max-width:720px;margin:24px auto 20px;
+}
+.step{
+  position:relative;padding:16px;border:1px solid rgba(245,199,107,.16);
+  border-radius:16px;background:rgba(255,255,255,.025);
+  text-align:center;color:#999;font-size:12px;
+  transition:.25s;
+}
+.step:hover{transform:translateY(-3px);border-color:var(--line)}
+.step b{
+  display:block;color:var(--gold);font-size:12px;
+  letter-spacing:2px;margin-bottom:5px;
+}
+.card{
+  max-width:690px;margin:0 auto;
+  background:linear-gradient(145deg,rgba(22,22,22,.94),rgba(8,8,8,.96));
+  border:1px solid var(--line);border-radius:25px;
+  padding:30px;
+  box-shadow:0 30px 90px rgba(0,0,0,.65),inset 0 1px rgba(255,255,255,.035);
+  position:relative;overflow:hidden;
+}
+.card:before{
+  content:"";position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  box-shadow:0 0 18px rgba(245,199,107,.7);
+}
+.card-head{margin-bottom:23px}
+.card-head h2{margin:0 0 7px;font-size:22px}
+.card-head p{margin:0;color:#888;font-size:12px;line-height:1.6}
+label{display:block;margin:15px 0 7px;color:#d7d0bd;font-size:12px;font-weight:700;letter-spacing:.3px}
+input,select{
+  width:100%;padding:14px 15px;border-radius:12px;
+  border:1px solid #292929;background:#090909;color:#fff;
+  outline:none;font:inherit;transition:.2s;
+}
+input::placeholder{color:#666}
+input:focus,select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(245,199,107,.08),0 0 18px rgba(245,199,107,.07);
+}
+.check{
+  display:flex;gap:10px;align-items:flex-start;margin:18px 0;
+  color:#888;font-size:11px;line-height:1.55;
+}
+.check input{width:auto;margin-top:3px;accent-color:var(--green)}
+.btn{
+  width:100%;border:0;border-radius:13px;padding:15px;
+  font-size:14px;font-weight:900;letter-spacing:.4px;
+  cursor:pointer;color:#080808;
+  background:linear-gradient(135deg,#fff0b5 0%,#f5c76b 48%,#b47b25 100%);
+  box-shadow:0 10px 30px rgba(245,199,107,.16);
+  transition:.22s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(245,199,107,.24)}
+.note{font-size:10px;color:#666;text-align:center;margin-top:13px;line-height:1.6}
+.hidden{display:none}
+.success{text-align:center;padding:40px 30px}
+.success .icon{
+  width:58px;height:58px;margin:0 auto 17px;border-radius:50%;
+  display:grid;place-items:center;color:#07140d;
+  background:var(--green);font-size:25px;font-weight:900;
+  box-shadow:0 0 30px rgba(25,214,107,.25);
+}
+.success h2{margin:0 0 8px;color:var(--gold2)}
+.success p{color:#999;line-height:1.7;font-size:13px}
+.wa{
+  display:inline-block;margin-top:13px;padding:13px 20px;border-radius:12px;
+  background:linear-gradient(135deg,#22e978,#0ca953);
+  color:#03150b;text-decoration:none;font-weight:900;font-size:13px;
+  box-shadow:0 10px 25px rgba(25,214,107,.16);
+}
+.footer{
+  text-align:center;color:#555;font-size:10px;letter-spacing:1px;
+  margin-top:24px;text-transform:uppercase;
+}
+@media(max-width:650px){
+  .wrap{padding:18px 13px 45px}
+  .topbar{margin-bottom:25px}
+  .status{display:none}
+  .hero h1{font-size:45px}
+  .hero p{font-size:13px}
+  .steps{grid-template-columns:1fr;gap:8px}
+  .step{padding:12px}
+  .card{padding:22px 18px;border-radius:20px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><div class="brand-mark">V</div><div>SR <span>EMPIRE</span></div></div>
+    <div class="status"><i></i> VALETAX OFFICIAL PARTNER</div>
+  </div>
+
+  <section class="hero">
+    <span class="badge">✦ VALETAX REGISTRATION</span>
+    <h1>Join <strong>Valetax</strong></h1>
+    <p>Complete your details to continue your Valetax registration through the official registration page. Our Admin is ready to assist you with confirmation via WhatsApp.</p>
+    <div class="gold-line"></div>
+  </section>
+
+  <div class="steps">
+    <div class="step"><b>01</b>ENTER DETAILS</div>
+    <div class="step"><b>02</b>VALETAX REGISTRATION</div>
+    <div class="step"><b>03</b>CONTACT ADMIN</div>
+  </div>
+
+  <section class="card" id="formCard">
+    <div class="card-head">
+      <h2>Registration Details</h2>
+      <p>Enter the required details. Never enter your password or account security codes.</p>
+    </div>
+
+    <form id="regForm">
+      <label>Full Name</label>
+      <input id="name" required placeholder="Your full name">
+
+      <label>Email Address</label>
+      <input id="email" type="email" required placeholder="name@email.com">
+
+      <label>WhatsApp Number</label>
+      <input id="phone" required placeholder="60xxxxxxxxxx">
+
+      <label>Account Type</label>
+      <select id="account">
+        <option>Standard</option>
+        <option>Cent</option>
+        <option>ECN</option>
+      </select>
+
+      <label>Note (optional)</label>
+      <input id="note" placeholder="Example: I need help with registration">
+
+      <label class="check">
+        <input id="agree" type="checkbox" required>
+        <span>I agree to continue registration through the official Valetax page and contact the Admin for assistance.</span>
+      </label>
+
+      <button class="btn" type="submit">CONTINUE TO VALETAX REGISTRATION →</button>
+      <div class="note">Account registration is completed through the official Valetax page. Your password is never requested or sent via WhatsApp.</div>
+    </form>
+  </section>
+
+  <section class="card success hidden" id="success">
+    <div class="icon">✓</div>
+    <h2>Registration Continued</h2>
+    <p>The official Valetax registration page will open. After completing your registration, return to this page and contact the Admin via WhatsApp.</p>
+    <a class="wa" id="wa" target="_blank" rel="noopener">CONTACT ADMIN ON WHATSAPP ↗</a>
+  </section>
+
+  <div class="footer">TRADE • DISCIPLINE • GROW TOGETHER</div>
+</main>
+
+<script>
+const valetaxUrl='https://ma.valetaxid.com/embed/register/block?code=Hss5eOO9Bdvpuq4JwPcbv1VXmkmzAYfXPRr6edMJFedfUP%2FofVV6uMMH4MOOFT8bJhT4tfNsohgpsUcmp90deGgCZ9JqSfSJ%2BAZG44V2%2B9DOhIC%2FcHm77Tas047gru1w&lang=en&background=dark';
+const admin='60103732776';
+let data={};
+
+document.getElementById('regForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  data={
+    name:document.getElementById('name').value,
+    email:document.getElementById('email').value,
+    phone:document.getElementById('phone').value,
+    account:document.getElementById('account').value,
+    note:document.getElementById('note').value
+  };
+
+  const msg=`Hello Valetax Admin, I would like to confirm my registration.%0A%0AName: ${encodeURIComponent(data.name)}%0AEmail: ${encodeURIComponent(data.email)}%0AWhatsApp: ${encodeURIComponent(data.phone)}%0AAccount type: ${encodeURIComponent(data.account)}%0ANote: ${encodeURIComponent(data.note||'-')}`;
+
+  document.getElementById('wa').href=`https://wa.me/${admin}?text=${msg}`;
+  document.getElementById('formCard').classList.add('hidden');
+  document.getElementById('success').classList.remove('hidden');
+  window.open(valetaxUrl,'_blank','noopener');
+});
+</script>
+</body>
+</html>
